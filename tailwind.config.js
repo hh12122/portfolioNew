@@ -1,4 +1,6 @@
 import animate from "tailwindcss-animate"
+import forms from '@tailwindcss/forms'
+import colors from 'tailwindcss/colors'
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -10,15 +12,39 @@ export default {
     './src/**/*.{ts,tsx,vue}',
   ],
   theme: {
+    fontFamily: {
+      primary: ["Playfair Display", "serif"],
+      body: ["Work Sans", "sans-serif"],
+    },
     container: {
       center: true,
-      padding: "2rem",
+      padding: {
+        DEFAULT: "1rem",
+        lg: "3rem"
+      },
       screens: {
         "2xl": "1400px",
       },
     },
     extend: {
       colors: {
+        "light-primary": "#FAF1E6",
+        "light-secondary": "#FDFAF6",
+        "light-tail-100": "#A9DED2",
+        "light-tail-500": "#54BAB9",
+        "dark-primary": "#050402",
+        "dark-secondary": "#1C1D24",
+        "dark-navy-100": "#07567D",
+        "dark-navy-500": "#292D42",
+        accent: {
+          DEFAULT: "#ac6b34",
+          hover: "#925a2b",
+        },
+        paragraph: "#878e99",
+        blue: colors.blue,
+        indigo: colors.indigo,
+        green: colors.green,
+        red: colors.red,
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -39,10 +65,6 @@ export default {
         muted: {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
-        },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",
@@ -74,5 +96,5 @@ export default {
       },
     },
   },
-  plugins: [animate],
+  plugins: [animate, forms],
 }

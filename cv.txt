@@ -1,0 +1,208 @@
+\documentclass[10pt,a4paper]{moderncv}
+\moderncvstyle{banking}
+\moderncvcolor{blue}
+
+\usepackage[scale=0.9]{geometry}
+\usepackage[absolute,overlay]{textpos} % allows placing things anywhere on the page
+\usepackage{graphicx}
+
+\setlength{\TPHorizModule}{1cm}
+\setlength{\TPVertModule}{1cm}
+
+\name{AMRANE}{Hocine}
+\title{Web Dev}
+\address{Cité Naceria 3ED N 243}{06000, B\'ejaia, Alg\'erie}
+\phone[mobile]{+213 540036105}
+\email{hocineprint@gmail.com}
+\social[linkedin]{hocine-amrane-print}
+\social[github]{hh12122}
+
+\begin{document}
+
+% Place photo at top-left, before the title
+\begin{textblock}{3}(0,1)
+    \includegraphics[width=3cm,height=3cm]{hocine}
+\end{textblock}
+\makecvtitle
+
+
+\section{EXPÉRIENCE PROFESSIONNELLE}
+\cventry{Juin. 2023 -- Présent}{Développeur Full-Stack}{Tech Instinct}{Béjaia, Algérie}{}{
+Développement et maintenance d’applications web en \textbf{front-end} et \textbf{back-end}. Conception de nouvelles fonctionnalités, intégration d’API et optimisation des performances des systèmes existants. Collaboration étroite avec l’équipe produit et technique pour assurer une livraison rapide et de qualité, en suivant les bonnes pratiques de développement (tests, documentation, CI/CD).
+}
+
+\section{FORMATION}
+\cventry{2019 -- 2021}{Master}{Universit\'e Abderrahmane Mira}{B\'ejaia, Alg\'erie}{}{G\'enie Logiciel.}
+\cventry{2016 -- 2019}{Licence}{Universit\'e Abderrahmane Mira}{B\'ejaia, Alg\'erie}{}{Syst\`emes Informatiques.}
+
+
+\section{CERTIFICATIONS}
+\cventry{2020 -- 2022}{Certification}{Cisco}{En ligne}{}{CCNA (Cisco Certified Network Associate).}
+\cventry{2019}{Formation}{ESGI (\'Ecole de Sciences de Gestion et d’Informatique)}{B\'ejaia, Alg\'erie}{}{Java Administrateur.}
+\cventry{2020}{Formation}{Cisco Networking Academy}{En ligne}{}{Networking Essentials.}
+\cventry{2021}{Formation}{Udemy}{En ligne}{}{Complete Java Programming (Beginner to Advanced).}
+
+\section{COMP\'ETENCES TECHNIQUES}
+\cvitem{Langages}{PHP,JavaScript, SQL, Java}
+\cvitem{Outils et Frameworks}{HTML5, CSS3, , Bootstrap, Vue.js, Angular, Symfony, Laravel, Docker, MySQL, MongoDB, AWS, WordPress, Tailwind, REST API}
+\cvitem{Langues}{Kabyle (courant), Arabe (courant), Fran\c{c}ais (avanc\'e), Anglais (interm\'ediaire)}
+
+\section{QUALIT\'ES}
+\cvitem{}{Autonomie, sens des responsabilit\'es, esprit d'\'equipe, adaptabilit\'e.}
+
+\newpage
+\section*{Projet : Carte Financement}
+\begin{center}
+    \includegraphics[width=0.2\textwidth]{CF.PNG} % Remplacez par le logo si disponible
+\end{center}
+
+\textbf{Description du projet :}  
+Carte Financement est une plateforme de courtage en crédit immobilier spécialisée dans le financement des entreprises, des professionnels, ainsi que des résidents et non-résidents. Elle accompagne une clientèle variée grâce à une équipe d’experts et une connaissance approfondie du marché bancaire.
+
+\textbf{Rôle et responsabilités :}
+\begin{itemize}
+    \item Participation au développement et à l’intégration de nouvelles fonctionnalités pour améliorer l’expérience utilisateur.  
+    \item Maintenance corrective et évolutive de l’application web.  
+    \item Collaboration avec l’équipe technique afin d’optimiser la performance et la sécurité de la plateforme.  
+    \item Intégration d’outils modernes pour la gestion et le suivi des dossiers clients.  
+\end{itemize}
+
+\textbf{Technologies utilisées :}  
+Symfony, Vue.js, MySQL, Twig, Jinja, Python, Docker, API REST.
+
+\textbf{Résultats obtenus :}
+\begin{itemize}
+    \item Amélioration continue des performances et de la stabilité de l’application.  
+    \item Déploiement de nouvelles fonctionnalités répondant aux besoins des clients et des courtiers.  
+    \item Renforcement de la fiabilité et de la sécurité de la plateforme.  
+\end{itemize}
+\section*{Projet : Ulerb}
+\begin{center}
+    \includegraphics[width=0.2\textwidth]{ulerb.png} % Remplacez par le logo si disponible
+\end{center}
+
+\textbf{Description du projet :}  
+Ulerb est une solution logistique complète dédiée aux transitaires. Elle permet la gestion des expéditions, le suivi des marchandises et la communication avec les clients. L’objectif est de livrer plus que de simples colis en offrant un service fiable, sécurisé et orienté client.  
+
+\textbf{Rôle et responsabilités :}
+\begin{itemize}
+    \item Développement et maintenance de l’application web pour la gestion des transitaires et des flux logistiques.  
+    \item Contribution au développement de l’application mobile multiplateforme avec \textbf{Capacitor}.  
+    \item Intégration d’API pour le suivi en temps réel des livraisons et la gestion des notifications clients.  
+    \item Optimisation de l’expérience utilisateur sur desktop et mobile.  
+\end{itemize}
+
+\textbf{Technologies utilisées :}  
+Vue.js, Symfony, MongoDb, Pug, Facebook Sdk Capacitor, Stripe, AWS.  
+
+\textbf{Résultats obtenus :}
+\begin{itemize}
+    \item Mise en place d’un suivi efficace et en temps réel des expéditions.  
+    \item Amélioration de la communication entre transitaires et clients via l’application mobile.  
+    \item Contribution au renforcement de la fiabilité et de la fluidité du processus logistique.  
+\end{itemize}
+\section*{Projet : Koalife}
+\begin{center}
+    \includegraphics[width=0.2\textwidth]{koalife.png} % Remplacez par le logo si disponible
+\end{center}
+
+\textbf{Description du projet :}  
+Koalife est une plateforme spécialisée dans l’assurance emprunteur. Le projet consistait à mettre en place un simulateur permettant aux utilisateurs de calculer et comparer différentes offres d’assurance emprunteur en ligne.  
+
+\textbf{Rôle et responsabilités :}
+\begin{itemize}
+    \item Développement et personnalisation d’un simulateur d’assurance via \textbf{WordPress}.  
+    \item Intégration de formulaires interactifs et automatisation des calculs de simulation.  
+    \item Amélioration de l’ergonomie et de l’expérience utilisateur pour simplifier la navigation et l’utilisation du simulateur.  
+    \item Maintenance et mises à jour régulières du site pour assurer sa fiabilité.  
+\end{itemize}
+
+\textbf{Technologies utilisées :}  
+WordPress, PHP, MySQL, JavaScript, HTML5, CSS3, Plugins WordPress.  
+
+\textbf{Résultats obtenus :}
+\begin{itemize}
+    \item Mise en place d’un simulateur fonctionnel et fiable pour les emprunteurs.  
+    \item Optimisation de l’expérience utilisateur et augmentation de l’engagement sur la plateforme.  
+    \item Contribution à la digitalisation des services de simulation d’assurance.  
+\end{itemize}
+\section*{Projet : SpartanJob}
+\begin{center}
+    \includegraphics[width=0.2\textwidth]{logo.jpg} % Remplacez par le logo si disponible
+\end{center}
+
+\textbf{Description du projet :}  
+SpartanJob est une plateforme de recrutement et de job listings dédiée à la Suisse. Elle propose aux candidats les meilleures opportunités de carrière et aux entreprises un outil performant pour recruter efficacement les bons talents.  
+
+\textbf{Rôle et responsabilités :}
+\begin{itemize}
+    \item Développement de l’interface utilisateur en \textbf{Angular}, avec une approche responsive et moderne.  
+    \item Intégration des API de la plateforme pour afficher et gérer les offres d’emploi en temps réel.  
+    \item Mise en place de composants dynamiques pour améliorer la navigation et l’expérience utilisateur.  
+    \item Optimisation du code et collaboration avec l’équipe backend pour assurer la fluidité du système.  
+\end{itemize}
+
+\textbf{Technologies utilisées :}  
+Angular, TypeScript, HTML5, CSS3, Tailwind.  
+
+\textbf{Résultats obtenus :}
+\begin{itemize}
+    \item Déploiement d’une interface ergonomique et intuitive pour les candidats et recruteurs.  
+    \item Amélioration de l’expérience utilisateur grâce à des composants dynamiques et performants.  
+    \item Contribution à la création d’une plateforme fiable et attractive pour le marché suisse de l’emploi.  
+\end{itemize}
+
+
+\section*{Projet : FAST}
+\begin{center}
+    \includegraphics[width=0.2\textwidth]{fast.png} % Remplacez par le logo si disponible
+\end{center}
+
+\textbf{Description du projet :}  
+FAST est une solution de gestion commerciale et de facturation 100% algérienne, proposée en mode SaaS (cloud). Elle permet de simplifier la gestion des stocks, la facturation et l’administration quotidienne des entreprises, qu’il s’agisse de TPE, PME ou de grandes structures.  
+
+\textbf{Rôle et responsabilités :}
+\begin{itemize}
+    \item Développement du front-end avec \textbf{Angular} pour une expérience fluide et intuitive.  
+    \item Conception d’interfaces modernes et ergonomiques adaptées aux besoins des utilisateurs.  
+    \item Intégration des API backend pour la gestion des stocks, clients et factures en temps réel.  
+    \item Optimisation des performances et amélioration continue de l’expérience utilisateur.  
+\end{itemize}
+
+\textbf{Technologies utilisées :}  
+Angular, TypeScript, HTML5, CSS3, Bootstrap, REST API.  
+
+\textbf{Résultats obtenus :}
+\begin{itemize}
+    \item Mise en place d’une interface SaaS ergonomique et accessible à différents types d’entreprises.  
+    \item Amélioration de la productivité des utilisateurs grâce à des flux simplifiés de gestion et de facturation.  
+    \item Contribution au développement d’une solution locale innovante pour la digitalisation des entreprises en Algérie.  
+\end{itemize}
+\section*{Maintenance et gestion des sites WordPress}
+\begin{center}
+    \includegraphics[width=0.2\textwidth]{Copie d'écran_20250410_155105.png} % Ajoute un logo WordPress si disponible
+\end{center}
+
+\textbf{Description :}  
+Expérience dans la maintenance, la gestion et l’optimisation de plusieurs sites WordPress, incluant la mise à jour des plugins, thèmes et noyau, ainsi que l’amélioration des performances et de la sécurité.  
+
+\textbf{Rôle et responsabilités :}
+\begin{itemize}
+    \item Maintenance préventive et corrective des sites WordPress (mises à jour, sauvegardes, sécurité).  
+    \item Développement et intégration de nouvelles fonctionnalités selon les besoins des clients.  
+    \item Optimisation SEO et amélioration de la vitesse de chargement des sites.  
+    \item Support technique et accompagnement des clients dans l’utilisation de WordPress et Elementor.  
+\end{itemize}
+
+\textbf{Technologies utilisées :}  
+WordPress, Elementor, WooCommerce, PHP, MySQL, CSS, JavaScript, SEO tools.  
+
+\textbf{Résultats obtenus :}
+\begin{itemize}
+    \item Stabilité et sécurité renforcées des sites gérés.  
+    \item Expérience utilisateur améliorée grâce à des optimisations de performance.  
+    \item Satisfaction accrue des clients grâce à un suivi continu et des évolutions adaptées.  
+\end{itemize}
+
+
+\end{document}
