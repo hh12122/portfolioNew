@@ -8,115 +8,186 @@
         <p class="text-lg text-paragraph dark:text-gray-400 font-body">Mes dernières réalisations</p>
       </div>
 
-      <div v-if="projects.length > 0" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div
-          v-for="project in projects"
-          :key="project.id"
-          class="group bg-white dark:bg-dark-primary rounded-lg overflow-hidden border border-accent/20 hover:border-accent hover:shadow-2xl transition-all duration-300">
-          <div class="aspect-video bg-gray-200 dark:bg-dark-navy-500 relative overflow-hidden">
-            <img
-              v-if="project.image_or_video"
-              :src="project.image_or_video"
-              :alt="project.name"
-              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-dark-primary/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-          </div>
-          <div class="p-6">
-            <div class="flex items-center justify-between mb-3">
-              <span class="text-sm font-medium text-accent font-body">{{ project.skill }}</span>
-              <a
-                v-if="project.url"
-                :href="project.url"
-                target="_blank"
-                class="text-paragraph hover:text-accent transition-colors">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                </svg>
-              </a>
-            </div>
-            <h3 class="text-xl font-semibold text-dark-primary dark:text-light-primary mb-2 font-primary">
-              {{ project.name }}
-            </h3>
-            <p v-if="project.description" class="text-paragraph dark:text-gray-300 text-sm font-body line-clamp-3">
-              {{ project.description }}
-            </p>
-          </div>
+      <!-- Filter Navigation -->
+      <div v-if="projects.length > 0 || skills.length > 0">
+        <nav class="mb-12 border-b-2 border-accent/20">
+          <ul class="flex flex-col lg:flex-row justify-center items-center flex-wrap gap-2 lg:gap-4">
+            <!-- All Filter -->
+            <li class="cursor-pointer capitalize mt-4">
+              <button
+                @click="filterProjects('all')"
+                class="flex text-center px-6 py-3 rounded-lg hover:text-accent transition-all font-body"
+                :class="[
+                  selectedSkill === 'all'
+                    ? 'text-accent bg-accent/10 shadow-md'
+                    : 'text-dark-primary dark:text-light-primary hover:bg-accent/5'
+                ]">
+                Tous ({{ projects.length }})
+              </button>
+            </li>
+
+            <!-- Skill Filters -->
+            <li
+              v-for="skill in availableSkills"
+              :key="skill.id"
+              class="cursor-pointer capitalize mt-4">
+              <button
+                @click="filterProjects(skill.id)"
+                :class="[
+                  selectedSkill === skill.id
+                    ? 'text-accent bg-accent/10 shadow-md'
+                    : 'text-dark-primary dark:text-light-primary hover:bg-accent/5'
+                ]"
+                class="flex items-center text-center px-6 py-3 rounded-lg hover:text-accent transition-all font-body">
+                <img
+                  v-if="skill.image"
+                  :src="skill.image"
+                  :alt="skill.name"
+                  class="w-5 h-5 mr-2 object-contain"
+                />
+                {{ skill.name }} ({{ getSkillProjectCount(skill.id) }})
+              </button>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Projects Grid -->
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <ProjectCard
+            v-for="project in filteredProjects"
+            :key="project.id"
+            :project="project"
+          />
+        </div>
+
+        <!-- No projects message -->
+        <div v-if="filteredProjects.length === 0" class="text-center py-12">
+          <div class="text-6xl mb-4">📭</div>
+          <h3 class="text-xl font-semibold text-dark-primary dark:text-light-primary mb-2 font-primary">
+            Aucun projet trouvé
+          </h3>
+          <p class="text-paragraph dark:text-gray-300 font-body">
+            Aucun projet ne correspond au filtre sélectionné.
+          </p>
         </div>
       </div>
 
-      <!-- Static projects display -->
-      <div v-else class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div v-for="(project, index) in staticProjects" :key="index"
-             class="group bg-white dark:bg-dark-primary rounded-lg overflow-hidden border border-accent/20 hover:border-accent hover:shadow-2xl transition-all duration-300">
-          <div class="aspect-video bg-gradient-to-br from-accent/20 to-accent/10 flex items-center justify-center">
-            <span class="text-6xl text-accent/50">{{ project.icon }}</span>
-          </div>
-          <div class="p-6">
-            <div class="flex items-center justify-between mb-3">
-              <span class="text-sm font-medium text-accent font-body">{{ project.tech }}</span>
-            </div>
-            <h3 class="text-xl font-semibold text-dark-primary dark:text-light-primary mb-2 font-primary">
-              {{ project.name }}
-            </h3>
-            <p class="text-paragraph dark:text-gray-300 text-sm font-body line-clamp-3">
-              {{ project.description }}
-            </p>
-          </div>
-        </div>
+      <!-- No projects from database message -->
+      <div v-else class="text-center py-12">
+        <div class="text-6xl mb-4">📝</div>
+        <h3 class="text-xl font-semibold text-dark-primary dark:text-light-primary mb-2 font-primary">
+          Aucun projet disponible
+        </h3>
+        <p class="text-paragraph dark:text-gray-300 font-body">
+          Les projets seront chargés depuis la base de données. <br>
+          Ajoutez des projets via le panneau d'administration.
+        </p>
       </div>
     </div>
   </section>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
+import ProjectCard from './ProjectCard.vue'
+
+// Use composables - Nuxt auto-imports these
 const { fetchProjects } = useProjects()
+const { fetchSkills } = useSkills()
 
 const projects = ref([])
-const staticProjects = [
-  {
-    name: 'Carte Financement',
-    tech: 'Symfony/Vue.js',
-    description: 'Plateforme de courtage en crédit immobilier avec gestion complète des dossiers clients',
-    icon: '💳'
-  },
-  {
-    name: 'Ulerb',
-    tech: 'Vue.js/MongoDB',
-    description: 'Solution logistique pour transitaires avec suivi en temps réel des expéditions',
-    icon: '📦'
-  },
-  {
-    name: 'Koalife',
-    tech: 'WordPress',
-    description: 'Simulateur d\'assurance emprunteur avec calculs automatisés et comparaisons',
-    icon: '🏠'
-  },
-  {
-    name: 'SpartanJob',
-    tech: 'Angular',
-    description: 'Plateforme de recrutement dédiée au marché suisse avec matching intelligent',
-    icon: '💼'
-  },
-  {
-    name: 'FAST',
-    tech: 'Angular/SaaS',
-    description: 'Solution de gestion commerciale et facturation 100% algérienne en mode cloud',
-    icon: '⚡'
-  },
-  {
-    name: 'Sites WordPress',
-    tech: 'WordPress/PHP',
-    description: 'Maintenance et développement de fonctionnalités sur mesure pour plusieurs sites',
-    icon: '🌐'
+const skills = ref([])
+const selectedSkill = ref('all')
+const filteredProjects = ref([])
+
+
+// Get unique skills that are used in projects
+const availableSkills = computed(() => {
+  const projectSkills = new Set()
+  const skillsMap = new Map()
+
+  // First, add all skills to the map
+  skills.value.forEach(skill => {
+    skillsMap.set(skill.id, skill)
+  })
+
+  // Then collect skills used in projects (check both new skills array and old skill field)
+  projects.value.forEach(project => {
+    // Check new skills array first
+    if (project.skills && project.skills.length > 0) {
+      project.skills.forEach(skill => {
+        projectSkills.add(skill.id)
+        if (!skillsMap.has(skill.id)) {
+          skillsMap.set(skill.id, skill)
+        }
+      })
+    }
+    // Fallback to old skill field for backward compatibility
+    else if (project.skill) {
+      // Find skill by name in skills array for backward compatibility
+      const matchingSkill = skills.value.find(s => s.name === project.skill)
+      if (matchingSkill) {
+        projectSkills.add(matchingSkill.id)
+      }
+    }
+  })
+
+  // Return skills that are used in projects
+  return Array.from(skillsMap.values()).filter(skill => projectSkills.has(skill.id))
+})
+
+// Get count of projects for a specific skill
+const getSkillProjectCount = (skillId) => {
+  return projects.value.filter(project => {
+    // Check new skills array first
+    if (project.skills && project.skills.length > 0) {
+      return project.skills.some(skill => skill.id === skillId)
+    }
+    // Fallback to old skill field for backward compatibility
+    else if (project.skill) {
+      const matchingSkill = skills.value.find(s => s.name === project.skill)
+      return matchingSkill && matchingSkill.id === skillId
+    }
+    return false
+  }).length
+}
+
+// Filter projects by skill
+const filterProjects = (skillId) => {
+  selectedSkill.value = skillId
+
+  if (skillId === 'all') {
+    filteredProjects.value = projects.value
+  } else {
+    filteredProjects.value = projects.value.filter(project => {
+      // Check new skills array first (project can have multiple skills)
+      if (project.skills && project.skills.length > 0) {
+        return project.skills.some(skill => skill.id === skillId)
+      }
+      // Fallback to old skill field for backward compatibility
+      else if (project.skill) {
+        const matchingSkill = skills.value.find(s => s.name === project.skill)
+        return matchingSkill && matchingSkill.id === skillId
+      }
+      return false
+    })
   }
-]
+}
 
 onMounted(async () => {
-  const result = await fetchProjects()
-  if (result.data) {
-    projects.value = result.data
+  // Load projects and skills
+  const [projectsResult, skillsResult] = await Promise.all([
+    fetchProjects(),
+    fetchSkills()
+  ])
+
+  if (projectsResult.data) {
+    projects.value = projectsResult.data
+    filteredProjects.value = projectsResult.data // Show all by default
+  }
+
+  if (skillsResult.data) {
+    skills.value = skillsResult.data
   }
 })
 </script>

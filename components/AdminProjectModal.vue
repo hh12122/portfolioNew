@@ -17,7 +17,7 @@
           </div>
 
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Skill</label>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Primary Skill (for backward compatibility)</label>
             <select
               v-model="form.skill"
               required
@@ -25,12 +25,41 @@
               class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
             >
               <option value="" disabled>
-                {{ loadingSkills ? 'Loading skills...' : 'Select a skill' }}
+                {{ loadingSkills ? 'Loading skills...' : 'Select primary skill' }}
               </option>
               <option v-for="skill in skills" :key="skill.id" :value="skill.name">
                 {{ skill.name }}
               </option>
             </select>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Skills (Select multiple)</label>
+            <div v-if="loadingSkills" class="text-sm text-gray-500">Loading skills...</div>
+            <div v-else class="space-y-2 max-h-48 overflow-y-auto border border-gray-200 rounded-lg p-3">
+              <label
+                v-for="skill in skills"
+                :key="skill.id"
+                class="flex items-center space-x-3 cursor-pointer hover:bg-gray-50 p-2 rounded"
+              >
+                <input
+                  type="checkbox"
+                  :value="skill.id"
+                  v-model="form.selectedSkills"
+                  class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                />
+                <img
+                  v-if="skill.image"
+                  :src="skill.image"
+                  :alt="skill.name"
+                  class="w-6 h-6 object-contain"
+                />
+                <span class="text-sm">{{ skill.name }}</span>
+              </label>
+            </div>
+            <p class="text-xs text-gray-500 mt-1">
+              Select all skills used in this project. This enables better filtering.
+            </p>
           </div>
 
           <div>
@@ -88,7 +117,7 @@ const props = defineProps<{
   project?: any
 }>()
 
-const { createProject, updateProject, uploadProjectMedia } = useProjects()
+const { createProject, updateProject, uploadProjectMedia, createProjectWithSkills, updateProjectWithSkills } = useProjects()
 const { fetchSkills } = useSkills()
 
 const form = reactive({
@@ -96,7 +125,8 @@ const form = reactive({
   skill: props.project?.skill || '',
   url: props.project?.url || '',
   description: props.project?.description || '',
-  image_or_video: props.project?.image_or_video || ''
+  image_or_video: props.project?.image_or_video || '',
+  selectedSkills: props.project?.skills ? props.project.skills.map(s => s.id) : []
 })
 
 const loading = ref(false)
@@ -155,14 +185,23 @@ const handleSubmit = async () => {
     }
 
     if (props.project) {
-      const { error: updateError } = await updateProject(props.project.id, projectData)
+      // Update project with skills
+      const { error: updateError } = await updateProjectWithSkills(
+        props.project.id,
+        projectData,
+        form.selectedSkills
+      )
       if (updateError) {
         error.value = updateError
         loading.value = false
         return
       }
     } else {
-      const { error: createError } = await createProject(projectData)
+      // Create project with skills
+      const { error: createError } = await createProjectWithSkills(
+        projectData,
+        form.selectedSkills
+      )
       if (createError) {
         error.value = createError
         loading.value = false

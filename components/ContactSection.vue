@@ -113,63 +113,95 @@
         <!-- Contact Form -->
         <div>
           <form @submit.prevent="handleContactSubmit" class="bg-white dark:bg-dark-primary rounded-lg p-8 shadow-xl">
+            <!-- Status Messages -->
+            <div v-if="formStatus.message" class="mb-6 p-4 rounded-lg" :class="{
+              'bg-green-100 border border-green-300 text-green-700': formStatus.type === 'success',
+              'bg-red-100 border border-red-300 text-red-700': formStatus.type === 'error'
+            }">
+              <div class="flex items-center">
+                <svg v-if="formStatus.type === 'success'" class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                </svg>
+                <svg v-else class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="font-body">{{ formStatus.message }}</span>
+              </div>
+            </div>
+
             <div class="space-y-6">
               <div>
                 <label class="block text-sm font-medium text-dark-primary dark:text-light-primary mb-2 font-body">
-                  Nom complet
+                  Nom complet *
                 </label>
                 <input
                   v-model="contactForm.name"
+                  name="name"
                   type="text"
                   required
-                  class="w-full px-4 py-3 border border-accent/20 rounded-lg focus:outline-none focus:border-accent bg-light-secondary dark:bg-dark-secondary text-dark-primary dark:text-light-primary font-body"
-                  placeholder="Votre nom"
+                  :disabled="isSubmitting"
+                  class="w-full px-4 py-3 border border-accent/20 rounded-lg focus:outline-none focus:border-accent bg-light-secondary dark:bg-dark-secondary text-dark-primary dark:text-light-primary font-body disabled:opacity-50"
+                  placeholder="Votre nom complet"
                 />
               </div>
 
               <div>
                 <label class="block text-sm font-medium text-dark-primary dark:text-light-primary mb-2 font-body">
-                  Email
+                  Email *
                 </label>
                 <input
                   v-model="contactForm.email"
+                  name="_replyto"
                   type="email"
                   required
-                  class="w-full px-4 py-3 border border-accent/20 rounded-lg focus:outline-none focus:border-accent bg-light-secondary dark:bg-dark-secondary text-dark-primary dark:text-light-primary font-body"
+                  :disabled="isSubmitting"
+                  class="w-full px-4 py-3 border border-accent/20 rounded-lg focus:outline-none focus:border-accent bg-light-secondary dark:bg-dark-secondary text-dark-primary dark:text-light-primary font-body disabled:opacity-50"
                   placeholder="votre.email@exemple.com"
                 />
               </div>
 
               <div>
                 <label class="block text-sm font-medium text-dark-primary dark:text-light-primary mb-2 font-body">
-                  Sujet
+                  Sujet *
                 </label>
                 <input
                   v-model="contactForm.subject"
+                  name="_subject"
                   type="text"
                   required
-                  class="w-full px-4 py-3 border border-accent/20 rounded-lg focus:outline-none focus:border-accent bg-light-secondary dark:bg-dark-secondary text-dark-primary dark:text-light-primary font-body"
+                  :disabled="isSubmitting"
+                  class="w-full px-4 py-3 border border-accent/20 rounded-lg focus:outline-none focus:border-accent bg-light-secondary dark:bg-dark-secondary text-dark-primary dark:text-light-primary font-body disabled:opacity-50"
                   placeholder="Sujet de votre message"
                 />
               </div>
 
               <div>
                 <label class="block text-sm font-medium text-dark-primary dark:text-light-primary mb-2 font-body">
-                  Message
+                  Message *
                 </label>
                 <textarea
                   v-model="contactForm.message"
+                  name="message"
                   required
                   rows="5"
-                  class="w-full px-4 py-3 border border-accent/20 rounded-lg focus:outline-none focus:border-accent bg-light-secondary dark:bg-dark-secondary text-dark-primary dark:text-light-primary font-body resize-none"
+                  :disabled="isSubmitting"
+                  class="w-full px-4 py-3 border border-accent/20 rounded-lg focus:outline-none focus:border-accent bg-light-secondary dark:bg-dark-secondary text-dark-primary dark:text-light-primary font-body resize-none disabled:opacity-50"
                   placeholder="Votre message..."
                 ></textarea>
               </div>
 
+              <!-- Honeypot field for spam protection -->
+              <input type="text" name="_gotcha" style="display:none" />
+
               <button
                 type="submit"
-                class="w-full bg-accent hover:bg-accent-hover text-white py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 font-body">
-                Envoyer le message
+                :disabled="isSubmitting"
+                class="w-full bg-accent hover:bg-accent-hover text-white py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 font-body disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center">
+                <svg v-if="isSubmitting" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                {{ isSubmitting ? 'Envoi en cours...' : 'Envoyer le message' }}
               </button>
             </div>
           </form>
@@ -180,7 +212,7 @@
 </template>
 
 <script setup>
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
 
 const contactForm = reactive({
   name: '',
@@ -189,14 +221,83 @@ const contactForm = reactive({
   message: ''
 })
 
-const handleContactSubmit = () => {
-  console.log('Contact form submitted:', contactForm)
-  alert('Message envoyé avec succès! (Ceci est une démo - configurez votre service d\'email)')
+const isSubmitting = ref(false)
+const formStatus = reactive({
+  message: '',
+  type: '' // 'success' or 'error'
+})
 
-  // Reset form
-  contactForm.name = ''
-  contactForm.email = ''
-  contactForm.subject = ''
-  contactForm.message = ''
+// Formspree endpoint - replace with your actual Formspree form ID
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xyznzqob'
+
+const handleContactSubmit = async () => {
+  isSubmitting.value = true
+  formStatus.message = ''
+
+  try {
+    const formData = new FormData()
+    formData.append('name', contactForm.name)
+    formData.append('_replyto', contactForm.email)
+    formData.append('_subject', `Portfolio Contact: ${contactForm.subject}`)
+    formData.append('message', `
+Nom: ${contactForm.name}
+Email: ${contactForm.email}
+Sujet: ${contactForm.subject}
+
+Message:
+${contactForm.message}
+
+---
+Envoyé depuis le portfolio de Hocine AMRANE
+    `)
+
+    const response = await fetch(FORMSPREE_ENDPOINT, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
+
+    if (response.ok) {
+      formStatus.message = '✅ Message envoyé avec succès! Je vous répondrai dans les plus brefs délais.'
+      formStatus.type = 'success'
+
+      // Reset form
+      contactForm.name = ''
+      contactForm.email = ''
+      contactForm.subject = ''
+      contactForm.message = ''
+    } else {
+      throw new Error('Erreur lors de l\'envoi')
+    }
+  } catch (error) {
+    console.error('Error submitting form:', error)
+    formStatus.message = '❌ Erreur lors de l\'envoi. Veuillez réessayer ou me contacter directement à hocineprint@gmail.com'
+    formStatus.type = 'error'
+  }
+
+  isSubmitting.value = false
+
+  // Clear status message after 10 seconds
+  setTimeout(() => {
+    formStatus.message = ''
+  }, 10000)
+}
+
+// Alternative: Direct mailto link handler
+const handleDirectEmail = () => {
+  const subject = encodeURIComponent(`Contact Portfolio: ${contactForm.subject || 'Nouveau message'}`)
+  const body = encodeURIComponent(`
+Bonjour Hocine,
+
+${contactForm.message || '[Votre message ici]'}
+
+Cordialement,
+${contactForm.name || '[Votre nom]'}
+${contactForm.email || '[Votre email]'}
+  `)
+
+  window.location.href = `mailto:hocineprint@gmail.com?subject=${subject}&body=${body}`
 }
 </script>
