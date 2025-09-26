@@ -7,7 +7,7 @@
           <img src="/assets/images/logo.png" alt="Logo" class="h-12 w-12 object-contain" />
           <div>
             <p class="text-light-primary font-semibold font-primary">AMRANE Hocine</p>
-            <p class="text-gray-400 text-sm font-body">© 2024 {{ $t('footer.rights') }}</p>
+            <p class="text-gray-400 text-sm font-body">© {{ currentYear }} {{ $t('footer.rights') }}</p>
           </div>
         </div>
 
@@ -42,16 +42,13 @@
           </a>
         </div>
       </div>
-
-      <!-- Bottom line -->
-      <div class="mt-8 pt-8 border-t border-gray-700 text-center">
-        <p class="text-gray-400 text-sm font-body">
-          {{ $t('footer.made') }} <span class="text-accent">❤️</span> AMRANE Hocine
-        </p>
-      </div>
     </div>
   </footer>
 </template>
 
 <script setup>
+  import { computed } from 'vue'
+    
+  const currentYear = computed(() => new 
+  Date().getFullYear())
 </script>

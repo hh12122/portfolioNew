@@ -3,14 +3,24 @@
     <div class="container mx-auto h-full">
       <div class="flex flex-col md:flex-row items-center h-full pt-8">
         <div class="flex-1 flex flex-col items-center lg:items-start">
-          <p class="text-lg text-accent font-body mb-[22px] animate-fade-in-up animation-delay-200">{{ $t('hero.greeting') }}</p>
-          <h1 class="text-4xl leading-[44px] md:text-5xl md:leading-tight lg:text-7xl lg:leading-[1.2] font-bold md:tracking-[-2px] font-primary text-dark-primary dark:text-light-primary text-center lg:text-left animate-fade-in-up animation-delay-400">
-            {{ $t('hero.title') }}
-          </h1>
-          <p class="pt-4 pb-8 md:pt-6 md:pb-12 max-w-[480px] text-lg text-center lg:text-left text-paragraph dark:text-gray-300 font-body animate-fade-in-up animation-delay-600">
-            {{ $t('hero.description') }}
+          <!-- Greeting with typewriter effect -->
+          <p class="text-lg text-accent font-body mb-[22px] opacity-0 animate-fade-in-up animation-delay-200">
+            <span ref="greetingText" class="typewriter-text"></span>
+            <span class="typewriter-cursor" :class="{ 'typing': isTypingGreeting, 'hidden': !isTypingGreeting && greetingComplete }">|</span>
           </p>
-          <div class="flex flex-col sm:flex-row gap-4 animate-fade-in-up animation-delay-800">
+
+          <!-- Title with typewriter effect -->
+          <h1 class="text-4xl leading-[44px] md:text-5xl md:leading-tight lg:text-7xl lg:leading-[1.2] font-bold md:tracking-[-2px] font-primary text-dark-primary dark:text-light-primary text-center lg:text-left opacity-0 animate-fade-in-up animation-delay-800">
+            <span ref="titleText" class="typewriter-text"></span>
+            <span class="typewriter-cursor" :class="{ 'typing': isTypingTitle, 'hidden': !isTypingTitle && titleComplete }">|</span>
+          </h1>
+
+          <!-- Description with typewriter effect -->
+          <p class="pt-4 pb-8 md:pt-6 md:pb-12 max-w-[480px] text-lg text-center lg:text-left text-paragraph dark:text-gray-300 font-body opacity-0 animate-fade-in-up animation-delay-1200">
+            <span ref="descriptionText" class="typewriter-text"></span>
+            <span class="typewriter-cursor" :class="{ 'typing': isTypingDescription, 'hidden': !isTypingDescription && descriptionComplete }">|</span>
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 opacity-0 transform translate-y-4 transition-all duration-700 ease-out" :class="{ 'opacity-100 translate-y-0': showButtons }">
             <a href="#contact" class="btn btn-md bg-accent hover:bg-accent-hover text-white px-8 py-3 rounded-lg font-body transition-all hover:scale-105 hover:shadow-lg">
               {{ $t('hero.cta.work') }}
             </a>
@@ -20,7 +30,7 @@
           </div>
 
           <!-- Social Links -->
-          <div class="flex space-x-6 mt-8 animate-fade-in-up animation-delay-1000">
+          <div class="flex space-x-6 mt-8 opacity-0 transform translate-y-4 transition-all duration-700 ease-out delay-500" :class="{ 'opacity-100 translate-y-0': showButtons }">
             <a href="https://github.com/hh12122" target="_blank"
                class="text-paragraph hover:text-accent dark:text-gray-400 dark:hover:text-accent transition-all duration-300 hover:scale-110 hover:-translate-y-1">
               <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -51,4 +61,169 @@
 </template>
 
 <script setup>
+import { ref, onMounted, nextTick } from 'vue'
+
+const { t } = useI18n()
+
+// Template refs
+const greetingText = ref()
+const titleText = ref()
+const descriptionText = ref()
+
+// Animation states
+const isTypingGreeting = ref(false)
+const isTypingTitle = ref(false)
+const isTypingDescription = ref(false)
+const showButtons = ref(false)
+
+// Completion states
+const greetingComplete = ref(false)
+const titleComplete = ref(false)
+const descriptionComplete = ref(false)
+
+// Typewriter animation function
+const typeWriter = async (element, text, speed = 50, startDelay = 0) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      let i = 0
+      const typeInterval = setInterval(() => {
+        if (i < text.length) {
+          element.value.textContent += text.charAt(i)
+          i++
+        } else {
+          clearInterval(typeInterval)
+          resolve()
+        }
+      }, speed)
+    }, startDelay)
+  })
+}
+
+// Start typewriter animations
+const startTypewriterAnimations = async () => {
+  // Wait for DOM to be ready
+  await nextTick()
+
+  // Clear existing content
+  if (greetingText.value) greetingText.value.textContent = ''
+  if (titleText.value) titleText.value.textContent = ''
+  if (descriptionText.value) descriptionText.value.textContent = ''
+
+  // Start greeting animation after fade-in
+  setTimeout(async () => {
+    if (greetingText.value) {
+      isTypingGreeting.value = true
+      await typeWriter(greetingText, t('hero.greeting'), 80)
+      isTypingGreeting.value = false
+      greetingComplete.value = true
+
+      // Small pause before title
+      setTimeout(async () => {
+        if (titleText.value) {
+          isTypingTitle.value = true
+          await typeWriter(titleText, t('hero.title'), 60)
+          isTypingTitle.value = false
+          titleComplete.value = true
+
+          // Small pause before description
+          setTimeout(async () => {
+            if (descriptionText.value) {
+              isTypingDescription.value = true
+              await typeWriter(descriptionText, t('hero.description'), 40)
+              isTypingDescription.value = false
+              descriptionComplete.value = true
+
+              // Show buttons after all text is typed
+              setTimeout(() => {
+                showButtons.value = true
+              }, 500)
+            }
+          }, 300)
+        }
+      }, 500)
+    }
+  }, 800) // Wait for fade-in animation to start
+}
+
+onMounted(() => {
+  startTypewriterAnimations()
+})
 </script>
+
+<style scoped>
+/* Typewriter cursor animation */
+.typewriter-cursor {
+  display: inline-block;
+  background-color: currentColor;
+  margin-left: 2px;
+  width: 2px;
+  animation: blink 1s infinite;
+  transition: opacity 0.3s ease-out;
+}
+
+.typewriter-cursor.typing {
+  animation: blink 0.7s infinite;
+}
+
+.typewriter-cursor.hidden {
+  opacity: 0;
+  animation: none;
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+/* Enhanced text appearance during typing */
+.typewriter-text {
+  display: inline-block;
+  min-height: 1em;
+}
+
+/* Smooth transitions for buttons and social links */
+.opacity-0 {
+  opacity: 0;
+}
+
+.opacity-100 {
+  opacity: 1;
+}
+
+/* Ensure proper spacing and alignment */
+.typewriter-text:empty::after {
+  content: '\00a0'; /* non-breaking space to maintain height */
+}
+
+/* Add subtle glow effect to typing cursor */
+.typewriter-cursor.typing {
+  box-shadow: 0 0 8px currentColor;
+  animation: blink 0.7s infinite, glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 4px currentColor;
+  }
+  to {
+    box-shadow: 0 0 12px currentColor, 0 0 16px currentColor;
+  }
+}
+
+/* Responsive cursor size */
+@media (max-width: 768px) {
+  .typewriter-cursor {
+    width: 1.5px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .typewriter-cursor {
+    width: 3px;
+  }
+}
+</style>
