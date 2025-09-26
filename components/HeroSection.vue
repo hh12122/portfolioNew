@@ -63,8 +63,11 @@
 <script setup>
 import { ref, onMounted, nextTick } from 'vue'
 
-const { t } = useI18n()
-
+const { t, locale } = useI18n()
+// rerun typewriter when locale changes
+watch(locale, async () => {
+  await startTypewriterAnimations()
+})
 // Template refs
 const greetingText = ref()
 const titleText = ref()
@@ -101,13 +104,13 @@ const typeWriter = async (element, text, speed = 50, startDelay = 0) => {
 
 // Start typewriter animations
 const startTypewriterAnimations = async () => {
-  // Wait for DOM to be ready
-  await nextTick()
-
-  // Clear existing content
+    // Clear existing content
   if (greetingText.value) greetingText.value.textContent = ''
   if (titleText.value) titleText.value.textContent = ''
   if (descriptionText.value) descriptionText.value.textContent = ''
+  // Wait for DOM to be ready
+  await nextTick()
+
 
   // Start greeting animation after fade-in
   setTimeout(async () => {

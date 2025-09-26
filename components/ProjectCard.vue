@@ -7,16 +7,16 @@
     :class="{ 'pointer-events-none': !project.url }">
 
     <!-- Project Image -->
-    <div class="mb-6 w-full relative">
+    <div class="mb-6 w-1/2 relative">
       <!-- Animated background glow -->
       <div class="absolute -inset-2 bg-gradient-to-r from-accent/20 via-accent-hover/20 to-accent/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
 
-      <div class="aspect-video bg-gray-200 dark:bg-dark-navy-500 relative overflow-hidden rounded-2xl shadow-lg group-hover:shadow-xl transition-shadow duration-500">
+      <div class=" bg-gray-200 dark:bg-dark-navy-500 relative overflow-hidden rounded-2xl shadow-lg group-hover:shadow-xl transition-shadow duration-500">
         <img
           v-if="project.image_or_video"
           :src="project.image_or_video"
           :alt="project.name"
-          class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+            class="w-full h-40 object-contain p-4 bg-white dark:bg-dark-navy-500 rounded-2xl transition-transform duration-700 ease-out group-hover:scale-105"
         />
         <div v-else class="w-full h-full flex items-center justify-center bg-gradient-to-br from-accent/20 to-accent/10 relative">
           <span class="text-6xl text-accent/50 transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">🚀</span>

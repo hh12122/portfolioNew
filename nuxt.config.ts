@@ -10,9 +10,9 @@ export default defineNuxtConfig({
     url: process.env.SUPABASE_URL,
     key: process.env.SUPABASE_ANON_KEY,
     redirectOptions: {
-      login: '/admin/login',
-      callback: '/admin',
-      exclude: ['/', '/contact']
+    login: '/admin/login',   // send unauthenticated users here
+    callback: '/admin',      // after login, land here
+    exclude: ['/', '/contact','/en','/fr','/ar'] // allow portfolio pages without login
     }
   },
   css: ['~/assets/css/main.css'],
