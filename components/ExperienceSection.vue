@@ -3,9 +3,9 @@
     <div class="container mx-auto">
       <div class="text-center mb-16 animate-on-scroll">
         <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold font-primary text-dark-primary dark:text-light-primary mb-4">
-          Expérience Professionnelle
+          {{ $t('experience.title') }}
         </h2>
-        <p class="text-lg text-paragraph dark:text-gray-400 font-body">Mon parcours professionnel</p>
+        <p class="text-lg text-paragraph dark:text-gray-400 font-body">{{ $t('experience.subtitle') }}</p>
       </div>
 
       <div class="max-w-6xl mx-auto">
@@ -17,7 +17,7 @@
           <!-- Education -->
           <div class="mb-16 animate-on-scroll animation-delay-200">
             <h3 class="text-2xl font-bold text-center text-dark-primary dark:text-light-primary mb-8 font-primary">
-              Formation
+              {{ $t('experience.education.title') }}
             </h3>
 
             <!-- Licence -->
@@ -26,13 +26,13 @@
               <!-- Desktop: Content on left -->
               <div class="w-full md:w-7/12 mb-4 md:mb-0 md:pr-8">
                 <div class="bg-white dark:bg-dark-secondary rounded-lg shadow-xl p-6 ml-8 md:ml-0 hover:scale-105 transition-transform duration-300 hover:shadow-2xl">
-                  <span class="text-accent font-bold text-sm font-body">2016 - 2019</span>
+                  <span class="text-accent font-bold text-sm font-body">{{ $t('experience.education.license.period') }}</span>
                   <h4 class="text-xl font-bold text-dark-primary dark:text-light-primary mt-2 font-primary">
-                    Licence en Systèmes Informatiques
+                    {{ $t('experience.education.license.title') }}
                   </h4>
-                  <p class="text-accent-hover font-semibold mt-1 font-body">Université Abderrahmane Mira • Béjaia, Algérie</p>
+                  <p class="text-accent-hover font-semibold mt-1 font-body">{{ $t('experience.education.license.school') }}</p>
                   <p class="mt-3 text-paragraph dark:text-gray-300 text-sm font-body">
-                    Formation en systèmes informatiques, réseaux, programmation et bases de données.
+                    {{ $t('experience.education.license.description') }}
                   </p>
                 </div>
               </div>
@@ -56,13 +56,13 @@
               <!-- Desktop: Content on right -->
               <div class="w-full md:w-7/12 mb-4 md:mb-0 md:pl-8">
                 <div class="bg-white dark:bg-dark-secondary rounded-lg shadow-xl p-6 ml-8 md:ml-0 hover:scale-105 transition-transform duration-300 hover:shadow-2xl">
-                  <span class="text-accent font-bold text-sm font-body">2019 - 2021</span>
+                  <span class="text-accent font-bold text-sm font-body">{{ $t('experience.education.master.period') }}</span>
                   <h4 class="text-xl font-bold text-dark-primary dark:text-light-primary mt-2 font-primary">
-                    Master en Génie Logiciel
+                    {{ $t('experience.education.master.title') }}
                   </h4>
-                  <p class="text-accent-hover font-semibold mt-1 font-body">Université Abderrahmane Mira • Béjaia, Algérie</p>
+                  <p class="text-accent-hover font-semibold mt-1 font-body">{{ $t('experience.education.master.school') }}</p>
                   <p class="mt-3 text-paragraph dark:text-gray-300 text-sm font-body">
-                    Formation approfondie en développement logiciel, méthodologies agiles, et conception d'architectures logicielles modernes.
+                    {{ $t('experience.education.master.description') }}
                   </p>
                 </div>
               </div>
@@ -72,7 +72,7 @@
           <!-- Professional Experience -->
           <div class="mb-16 animate-on-scroll animation-delay-800">
             <h3 class="text-2xl font-bold text-center text-dark-primary dark:text-light-primary mb-8 font-primary">
-              Expérience Professionnelle
+              {{ $t('experience.work.title') }}
             </h3>
 
             <!-- Current Job -->
@@ -81,27 +81,27 @@
               <!-- Desktop: Content on left -->
               <div class="w-full md:w-7/12 mb-4 md:mb-0 md:pr-8">
                 <div class="bg-white dark:bg-dark-secondary rounded-lg shadow-xl p-6 ml-8 md:ml-0 hover:scale-105 transition-transform duration-300 hover:shadow-2xl">
-                  <span class="text-accent font-bold text-sm font-body">Juin 2023 - Présent</span>
+                  <span class="text-accent font-bold text-sm font-body">{{ $t('experience.work.current.period') }}</span>
                   <h4 class="text-xl font-bold text-dark-primary dark:text-light-primary mt-2 font-primary">
-                    Développeur Full-Stack
+                    {{ $t('experience.work.current.title') }}
                   </h4>
-                  <p class="text-accent-hover font-semibold mt-1 font-body">Tech Instinct • Béjaia, Algérie</p>
+                  <p class="text-accent-hover font-semibold mt-1 font-body">{{ $t('experience.work.current.company') }}</p>
                   <ul class="mt-4 space-y-2 text-paragraph dark:text-gray-300 text-sm font-body">
                     <li class="flex items-start hover:translate-x-2 transition-transform duration-300">
                       <span class="text-accent mr-2">•</span>
-                      <span>Développement et maintenance d'applications web en front-end et back-end</span>
+                      <span>{{ $t('experience.work.current.tasks.0') }}</span>
                     </li>
                     <li class="flex items-start hover:translate-x-2 transition-transform duration-300">
                       <span class="text-accent mr-2">•</span>
-                      <span>Conception de nouvelles fonctionnalités et intégration d'API</span>
+                      <span>{{ $t('experience.work.current.tasks.1') }}</span>
                     </li>
                     <li class="flex items-start hover:translate-x-2 transition-transform duration-300">
                       <span class="text-accent mr-2">•</span>
-                      <span>Optimisation des performances des systèmes existants</span>
+                      <span>{{ $t('experience.work.current.tasks.2') }}</span>
                     </li>
                     <li class="flex items-start hover:translate-x-2 transition-transform duration-300">
                       <span class="text-accent mr-2">•</span>
-                      <span>Collaboration avec l'équipe produit et technique (CI/CD, tests, documentation)</span>
+                      <span>{{ $t('experience.work.current.tasks.3') }}</span>
                     </li>
                   </ul>
                 </div>
@@ -121,4 +121,5 @@
 </template>
 
 <script setup>
+const { t } = useI18n()
 </script>

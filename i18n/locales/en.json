@@ -1,0 +1,121 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "skills": "Skills",
+    "projects": "Projects",
+    "experience": "Experience",
+    "contact": "Contact"
+  },
+  "hero": {
+    "greeting": "Hi, I'm Hocine",
+    "title": "I develop & maintain Web Applications",
+    "description": "Passionate about modern web technologies and creating exceptional user experiences",
+    "cta": {
+      "work": "Let's work together",
+      "projects": "View my projects"
+    }
+  },
+  "about": {
+    "title": "About me",
+    "subtitle": "Discover my journey and passions",
+    "heading": "Passionate Full-Stack Developer",
+    "description1": "Graduate with a Master's degree in Software Engineering from Abderrahmane Mira University of Béjaia, I am a full-stack developer with solid expertise in modern web development.",
+    "description2": "Currently working at Tech Instinct since June 2023, I participate in the development and maintenance of complex web applications, working across the entire technical stack, from front-end to back-end.",
+    "education": {
+      "title": "Education & Certifications",
+      "master": "Master's in Software Engineering (2019-2021)",
+      "license": "Bachelor's in Computer Systems (2016-2019)",
+      "ccna": "CCNA Cisco Certification (2020-2022)",
+      "java": "Java Administrator Training ESGI (2019)"
+    },
+    "contact": {
+      "phone": "+213 540 036 105",
+      "location": "Béjaia, Algeria",
+      "cta": "Contact me"
+    }
+  },
+  "skills": {
+    "fallback": {
+      "title": "Skills will be loaded from the database.",
+      "subtitle": "Add skills via the admin panel."
+    }
+  },
+  "projects": {
+    "title": "Completed Projects",
+    "subtitle": "My latest achievements",
+    "filter": {
+      "all": "All"
+    },
+    "empty": {
+      "title": "No projects found",
+      "description": "No projects match the selected filter."
+    },
+    "fallback": {
+      "title": "No projects available",
+      "description": "Projects will be loaded from the database. Add projects via the admin panel."
+    }
+  },
+  "experience": {
+    "title": "Professional Experience",
+    "subtitle": "My professional journey",
+    "education": {
+      "title": "Education",
+      "license": {
+        "period": "2016 - 2019",
+        "title": "Bachelor's in Computer Systems",
+        "school": "Abderrahmane Mira University • Béjaia, Algeria",
+        "description": "Training in computer systems, networks, programming and databases."
+      },
+      "master": {
+        "period": "2019 - 2021",
+        "title": "Master's in Software Engineering",
+        "school": "Abderrahmane Mira University • Béjaia, Algeria",
+        "description": "Advanced training in software development, agile methodologies, and modern software architecture design."
+      }
+    },
+    "work": {
+      "title": "Professional Experience",
+      "current": {
+        "period": "June 2023 - Present",
+        "title": "Full-Stack Developer",
+        "company": "Tech Instinct • Béjaia, Algeria",
+        "tasks": {
+          "0": "Development and maintenance of web applications in front-end and back-end",
+          "1": "Design of new features and API integration",
+          "2": "Performance optimization of existing systems",
+          "3": "Collaboration with product and technical teams (CI/CD, testing, documentation)"
+        }
+      }
+    }
+  },
+  "contact": {
+    "title": "Contact me",
+    "subtitle": "Let's discuss your project",
+    "form": {
+      "name": "Full name",
+      "email": "Email address",
+      "subject": "Subject",
+      "message": "Message",
+      "send": "Send message",
+      "sending": "Sending...",
+      "success": "Message sent successfully!",
+      "error": "Error sending message.",
+      "validation": {
+        "name": "Name is required",
+        "email": "Valid email is required",
+        "subject": "Subject is required",
+        "message": "Message is required"
+      }
+    },
+    "info": {
+      "email": "hocineprint[at]gmail.com",
+      "phone": "+213 540 036 105",
+      "location": "Béjaia, Algeria"
+    }
+  },
+  "footer": {
+    "rights": "All rights reserved",
+    "made": "Made with ❤️ by"
+  }
+}

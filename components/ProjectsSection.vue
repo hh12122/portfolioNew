@@ -3,9 +3,9 @@
     <div class="container mx-auto">
       <div class="text-center mb-16">
         <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold font-primary text-dark-primary dark:text-light-primary mb-4">
-          Projets Réalisés
+          {{ $t('projects.title') }}
         </h2>
-        <p class="text-lg text-paragraph dark:text-gray-400 font-body">Mes dernières réalisations</p>
+        <p class="text-lg text-paragraph dark:text-gray-400 font-body">{{ $t('projects.subtitle') }}</p>
       </div>
 
       <!-- Filter Navigation -->
@@ -22,7 +22,7 @@
                     ? 'text-accent bg-accent/10 shadow-md'
                     : 'text-dark-primary dark:text-light-primary hover:bg-accent/5'
                 ]">
-                Tous ({{ projects.length }})
+                {{ $t('projects.filter.all') }} ({{ projects.length }})
               </button>
             </li>
 
@@ -64,10 +64,10 @@
         <div v-if="filteredProjects.length === 0" class="text-center py-12">
           <div class="text-6xl mb-4">📭</div>
           <h3 class="text-xl font-semibold text-dark-primary dark:text-light-primary mb-2 font-primary">
-            Aucun projet trouvé
+            {{ $t('projects.empty.title') }}
           </h3>
           <p class="text-paragraph dark:text-gray-300 font-body">
-            Aucun projet ne correspond au filtre sélectionné.
+            {{ $t('projects.empty.description') }}
           </p>
         </div>
       </div>
@@ -76,11 +76,10 @@
       <div v-else class="text-center py-12">
         <div class="text-6xl mb-4">📝</div>
         <h3 class="text-xl font-semibold text-dark-primary dark:text-light-primary mb-2 font-primary">
-          Aucun projet disponible
+          {{ $t('projects.fallback.title') }}
         </h3>
         <p class="text-paragraph dark:text-gray-300 font-body">
-          Les projets seront chargés depuis la base de données. <br>
-          Ajoutez des projets via le panneau d'administration.
+          {{ $t('projects.fallback.description') }}
         </p>
       </div>
     </div>

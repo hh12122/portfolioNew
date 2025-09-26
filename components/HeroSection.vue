@@ -3,19 +3,19 @@
     <div class="container mx-auto h-full">
       <div class="flex flex-col md:flex-row items-center h-full pt-8">
         <div class="flex-1 flex flex-col items-center lg:items-start">
-          <p class="text-lg text-accent font-body mb-[22px] animate-fade-in-up animation-delay-200">Salut, je suis Hocine</p>
+          <p class="text-lg text-accent font-body mb-[22px] animate-fade-in-up animation-delay-200">{{ $t('hero.greeting') }}</p>
           <h1 class="text-4xl leading-[44px] md:text-5xl md:leading-tight lg:text-7xl lg:leading-[1.2] font-bold md:tracking-[-2px] font-primary text-dark-primary dark:text-light-primary text-center lg:text-left animate-fade-in-up animation-delay-400">
-            Je développe & maintiens <br> des Applications Web
+            {{ $t('hero.title') }}
           </h1>
           <p class="pt-4 pb-8 md:pt-6 md:pb-12 max-w-[480px] text-lg text-center lg:text-left text-paragraph dark:text-gray-300 font-body animate-fade-in-up animation-delay-600">
-            Passionné par les technologies web modernes et la création d'expériences utilisateur exceptionnelles
+            {{ $t('hero.description') }}
           </p>
           <div class="flex flex-col sm:flex-row gap-4 animate-fade-in-up animation-delay-800">
             <a href="#contact" class="btn btn-md bg-accent hover:bg-accent-hover text-white px-8 py-3 rounded-lg font-body transition-all hover:scale-105 hover:shadow-lg">
-              Travaillons ensemble
+              {{ $t('hero.cta.work') }}
             </a>
             <a href="#portfolio" class="btn btn-md border-2 border-accent text-accent hover:bg-accent hover:text-white px-8 py-3 rounded-lg font-body transition-all hover:scale-105 hover:shadow-lg">
-              Voir mes projets
+              {{ $t('hero.cta.projects') }}
             </a>
           </div>
 

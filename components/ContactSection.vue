@@ -3,9 +3,9 @@
     <div class="container mx-auto">
       <div class="text-center mb-16">
         <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold font-primary text-dark-primary dark:text-light-primary mb-4">
-          Contactez-moi
+          {{ $t('contact.title') }}
         </h2>
-        <p class="text-lg text-paragraph dark:text-gray-400 font-body">Travaillons ensemble sur votre prochain projet</p>
+        <p class="text-lg text-paragraph dark:text-gray-400 font-body">{{ $t('contact.subtitle') }}</p>
       </div>
 
       <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
@@ -13,11 +13,10 @@
         <div class="space-y-8">
           <div>
             <h3 class="text-2xl font-bold text-dark-primary dark:text-light-primary mb-6 font-primary">
-              Restons en contact
+              {{ $t('contact.title') }}
             </h3>
             <p class="text-paragraph dark:text-gray-300 font-body mb-8">
-              Je suis toujours ouvert aux nouvelles opportunités et collaborations.
-              N'hésitez pas à me contacter pour discuter de vos projets.
+              {{ $t('contact.subtitle') }}
             </p>
           </div>
 
@@ -32,7 +31,7 @@
               <div>
                 <p class="text-sm text-paragraph dark:text-gray-400 font-body">Email</p>
                 <a href="mailto:hocineprint@gmail.com" class="text-dark-primary dark:text-light-primary font-semibold hover:text-accent transition-colors font-body">
-                  hocineprint@gmail.com
+                   hocineprint@gmail.com 
                 </a>
               </div>
             </div>
@@ -46,7 +45,7 @@
               <div>
                 <p class="text-sm text-paragraph dark:text-gray-400 font-body">Téléphone</p>
                 <a href="tel:+213540036105" class="text-dark-primary dark:text-light-primary font-semibold hover:text-accent transition-colors font-body">
-                  +213 540 036 105
+                  {{ $t('contact.info.phone') }}
                 </a>
               </div>
             </div>
@@ -61,7 +60,7 @@
               <div>
                 <p class="text-sm text-paragraph dark:text-gray-400 font-body">Localisation</p>
                 <p class="text-dark-primary dark:text-light-primary font-semibold font-body">
-                  Béjaia, Algérie
+                  {{ $t('contact.info.location') }}
                 </p>
               </div>
             </div>
@@ -132,7 +131,7 @@
             <div class="space-y-6">
               <div>
                 <label class="block text-sm font-medium text-dark-primary dark:text-light-primary mb-2 font-body">
-                  Nom complet *
+                  {{ $t('contact.form.name') }} *
                 </label>
                 <input
                   v-model="contactForm.name"
@@ -141,13 +140,13 @@
                   required
                   :disabled="isSubmitting"
                   class="w-full px-4 py-3 border border-accent/20 rounded-lg focus:outline-none focus:border-accent bg-light-secondary dark:bg-dark-secondary text-dark-primary dark:text-light-primary font-body disabled:opacity-50"
-                  placeholder="Votre nom complet"
+                  :placeholder="$t('contact.form.name')"
                 />
               </div>
 
               <div>
                 <label class="block text-sm font-medium text-dark-primary dark:text-light-primary mb-2 font-body">
-                  Email *
+                  {{ $t('contact.form.email') }} *
                 </label>
                 <input
                   v-model="contactForm.email"
@@ -156,13 +155,13 @@
                   required
                   :disabled="isSubmitting"
                   class="w-full px-4 py-3 border border-accent/20 rounded-lg focus:outline-none focus:border-accent bg-light-secondary dark:bg-dark-secondary text-dark-primary dark:text-light-primary font-body disabled:opacity-50"
-                  placeholder="votre.email@exemple.com"
+                  :placeholder="$t('contact.form.email')"
                 />
               </div>
 
               <div>
                 <label class="block text-sm font-medium text-dark-primary dark:text-light-primary mb-2 font-body">
-                  Sujet *
+                  {{ $t('contact.form.subject') }} *
                 </label>
                 <input
                   v-model="contactForm.subject"
@@ -171,13 +170,13 @@
                   required
                   :disabled="isSubmitting"
                   class="w-full px-4 py-3 border border-accent/20 rounded-lg focus:outline-none focus:border-accent bg-light-secondary dark:bg-dark-secondary text-dark-primary dark:text-light-primary font-body disabled:opacity-50"
-                  placeholder="Sujet de votre message"
+                  :placeholder="$t('contact.form.subject')"
                 />
               </div>
 
               <div>
                 <label class="block text-sm font-medium text-dark-primary dark:text-light-primary mb-2 font-body">
-                  Message *
+                  {{ $t('contact.form.message') }} *
                 </label>
                 <textarea
                   v-model="contactForm.message"
@@ -186,7 +185,7 @@
                   rows="5"
                   :disabled="isSubmitting"
                   class="w-full px-4 py-3 border border-accent/20 rounded-lg focus:outline-none focus:border-accent bg-light-secondary dark:bg-dark-secondary text-dark-primary dark:text-light-primary font-body resize-none disabled:opacity-50"
-                  placeholder="Votre message..."
+                  :placeholder="$t('contact.form.message')"
                 ></textarea>
               </div>
 
@@ -201,7 +200,7 @@
                   <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                   <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
-                {{ isSubmitting ? 'Envoi en cours...' : 'Envoyer le message' }}
+                {{ isSubmitting ? $t('contact.form.sending') : $t('contact.form.send') }}
               </button>
             </div>
           </form>

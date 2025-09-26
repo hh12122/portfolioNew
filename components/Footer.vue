@@ -7,17 +7,17 @@
           <img src="/assets/images/logo.png" alt="Logo" class="h-12 w-12 object-contain" />
           <div>
             <p class="text-light-primary font-semibold font-primary">AMRANE Hocine</p>
-            <p class="text-gray-400 text-sm font-body">© 2024 Tous droits réservés</p>
+            <p class="text-gray-400 text-sm font-body">© 2024 {{ $t('footer.rights') }}</p>
           </div>
         </div>
 
         <!-- Quick Links -->
         <div class="flex flex-wrap justify-center gap-6 mb-6 md:mb-0">
-          <a href="#home" class="text-gray-400 hover:text-accent transition-colors font-body">Accueil</a>
-          <a href="#about" class="text-gray-400 hover:text-accent transition-colors font-body">À propos</a>
-          <a href="#skills" class="text-gray-400 hover:text-accent transition-colors font-body">Compétences</a>
-          <a href="#portfolio" class="text-gray-400 hover:text-accent transition-colors font-body">Projets</a>
-          <a href="#contact" class="text-gray-400 hover:text-accent transition-colors font-body">Contact</a>
+          <a href="#home" class="text-gray-400 hover:text-accent transition-colors font-body">{{ $t('nav.home') }}</a>
+          <a href="#about" class="text-gray-400 hover:text-accent transition-colors font-body">{{ $t('nav.about') }}</a>
+          <a href="#skills" class="text-gray-400 hover:text-accent transition-colors font-body">{{ $t('nav.skills') }}</a>
+          <a href="#portfolio" class="text-gray-400 hover:text-accent transition-colors font-body">{{ $t('nav.projects') }}</a>
+          <a href="#contact" class="text-gray-400 hover:text-accent transition-colors font-body">{{ $t('nav.contact') }}</a>
         </div>
 
         <!-- Social Links -->
@@ -46,7 +46,7 @@
       <!-- Bottom line -->
       <div class="mt-8 pt-8 border-t border-gray-700 text-center">
         <p class="text-gray-400 text-sm font-body">
-          Développé avec <span class="text-accent">❤️</span> en utilisant Vue.js & Nuxt.js
+          {{ $t('footer.made') }} <span class="text-accent">❤️</span> AMRANE Hocine
         </p>
       </div>
     </div>

@@ -23,8 +23,8 @@
 
       <!-- Fallback if no skills from database -->
       <div v-else class="text-center text-muted-foreground">
-        <p class="text-lg font-body">Les compétences seront chargées depuis la base de données.</p>
-        <p class="text-sm mt-2 font-body">Ajoutez des compétences via le panneau d'administration.</p>
+        <p class="text-lg font-body">{{ $t('skills.fallback.title') }}</p>
+        <p class="text-sm mt-2 font-body">{{ $t('skills.fallback.subtitle') }}</p>
       </div>
     </div>
   </section>
